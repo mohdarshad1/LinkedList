@@ -1,6 +1,6 @@
 package com.LinkedList;
 
-public class MyLinkedList {
+public class MyLinkedList<K extends Comparable<K>> {
 	public INode head;
 	public INode tail;
 
@@ -23,7 +23,7 @@ public class MyLinkedList {
 	}
 
 	public void printMyNode() {
-		StringBuffer myNodes = new StringBuffer("My Nodes: ");
+		StringBuffer myNodes = new StringBuffer("Nodes are: ");
 		INode tempNode = head;
 		while (tempNode.getNext() != null) {
 			myNodes.append(tempNode.getKey());
@@ -57,6 +57,7 @@ public class MyLinkedList {
 		INode tempNode = this.head;
 		this.head = head.getNext();
 		return tempNode;
+
 	}
 
 	public INode popLast() {
@@ -100,5 +101,36 @@ public class MyLinkedList {
 			n = n.getNext();
 		}
 		return size;
+	}
+
+	public static <K extends Comparable<K>> boolean maximum(K x, K y) {
+		K max = x;
+		if (y.compareTo(max) > 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public <K extends Comparable<K>> void sortList() {
+		INode<K> current = this.head;
+		INode<K> index = null;
+		K temp;
+		if (this.head == null)
+			return;
+		else {
+			while (current != null) {
+				index = current.getNext();
+				while (index != null) {
+					if (maximum(index.getKey(), current.getKey())) {
+						temp = current.getKey();
+						current.setKey(index.getKey());
+						index.setKey(temp);
+					}
+					index = index.getNext();
+				}
+				current = current.getNext();
+			}
+		}
 	}
 }

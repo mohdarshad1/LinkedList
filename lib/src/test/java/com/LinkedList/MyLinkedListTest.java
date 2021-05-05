@@ -140,13 +140,36 @@ public class MyLinkedListTest {
 		myLinkedList.append(mySecondNode);
 		myLinkedList.append(myThirdNode);
 		myLinkedList.append(myFourthNode);
-		System.out.println("Nodes : ");
+		System.out.println("\nBefore Deleting: ");
 		myLinkedList.printMyNode();
 		INode found = myLinkedList.search(myThirdNode.getKey());
 		myLinkedList.removeParticularNode(found);
-		System.out.println("\nDeleting given node: ");
+		System.out.println("\nAfter Deleting the specific node: ");
 		myLinkedList.printMyNode();
 		int size = myLinkedList.size();
 		System.out.print("\nSize of Linked List: " + size);
+	}
+	
+	@Test
+	public void givenAllElements_GetSortedList() {
+		MyNode<Integer> myFirstNode = new MyNode<>(56);
+		MyNode<Integer> mySecondNode = new MyNode<>(30);
+		MyNode<Integer> myThirdNode = new MyNode<>(40);
+		MyNode<Integer> myFourthNode = new MyNode<>(70);
+		MyLinkedList myLinkedList = new MyLinkedList();
+		myLinkedList.add(myFirstNode);
+		myLinkedList.append(mySecondNode);
+		myLinkedList.append(myThirdNode);
+		myLinkedList.append(myFourthNode);
+		System.out.println("\nBefore Sorting: ");
+		myLinkedList.printMyNode();
+		myLinkedList.sortList();
+		System.out.println("\nAfter Sorting: ");
+		myLinkedList.printMyNode();
+		boolean result = myLinkedList.head.equals(myFirstNode) && 
+						 myFirstNode.getNext().equals(mySecondNode) &&
+						 mySecondNode.getNext().equals(myThirdNode) &&
+						 myLinkedList.tail.equals(myFourthNode);
+		assertTrue(result);
 	}
 }
