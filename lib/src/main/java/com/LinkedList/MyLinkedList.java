@@ -35,18 +35,6 @@ public class MyLinkedList {
 		System.out.println(myNodes);
 	}
 
-	public void append(INode myNode) {
-		if (this.tail == null) {
-			this.tail = myNode;
-		}
-		if (this.head == null) {
-			this.head = myNode;
-		} else {
-			this.tail.setNext(myNode);
-			this.tail = myNode;
-		}
-	}
-
 	public void insert(INode myNode, INode newNode) {
 		INode tempNode = myNode.getNext();
 		myNode.setNext(newNode);
@@ -67,5 +55,28 @@ public class MyLinkedList {
 		this.tail = tempNode;
 		tempNode = tempNode.getNext();
 		return tempNode;
+	}
+	
+	public void append(INode myNode) {
+		if (this.tail == null) {
+			this.tail = myNode;
+		}
+		if (this.head == null) {
+			this.head = myNode;
+		} else {
+			this.tail.setNext(myNode);
+			this.tail = myNode;
+		}
+	}
+	
+	public INode search(Integer key) {
+		INode tempNode = this.head;
+		while (tempNode != null && tempNode.getNext() != null) {
+			if (tempNode.getKey() == key) {
+				return tempNode;
+			}
+			tempNode = tempNode.getNext();
+		}
+		return null;
 	}
 }
