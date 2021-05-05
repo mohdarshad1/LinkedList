@@ -23,7 +23,7 @@ public class MyLinkedList {
 	}
 
 	public void printMyNode() {
-		StringBuffer myNodes = new StringBuffer("My Nodes: ");
+		StringBuffer myNodes = new StringBuffer("Nodes are: ");
 		INode tempNode = head;
 		while (tempNode.getNext() != null) {
 			myNodes.append(tempNode.getKey());
@@ -33,5 +33,17 @@ public class MyLinkedList {
 		}
 		myNodes.append(tempNode.getKey());
 		System.out.println(myNodes);
+	}
+
+	public void append(INode myNode) {
+		if (this.tail == null) {
+			this.tail = myNode;
+		}
+		if (this.head == null) {
+			this.head = myNode;
+		} else {
+			this.tail.setNext(myNode);
+			this.tail = myNode;
+		}
 	}
 }
