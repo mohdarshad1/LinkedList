@@ -91,4 +91,14 @@ public class MyLinkedList {
 		prev.setNext(tempNode.getNext());
 		tempNode.setNext(null);
 	}
+
+	public int size() {
+		int size = 0;
+		INode n = head;
+		while (n != null) {
+			size++;
+			n = n.getNext();
+		}
+		return size;
+	}
 }

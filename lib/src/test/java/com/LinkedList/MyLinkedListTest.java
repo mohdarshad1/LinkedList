@@ -13,6 +13,7 @@ public class MyLinkedListTest {
 		myLinkedList.add(myFirstNode);
 		myLinkedList.add(mySecondNode);
 		myLinkedList.add(myThirdNode);
+		System.out.println("Adding: ");
 		myLinkedList.printMyNode();
 		boolean result = myLinkedList.head.equals(myThirdNode) && 
 						 myLinkedList.head.getNext().equals(mySecondNode) && 
@@ -29,6 +30,7 @@ public class MyLinkedListTest {
 		myLinkedList.add(myFirstNode);
 		myLinkedList.append(mySecondNode);
 		myLinkedList.append(myThirdNode);
+		System.out.println("Appending: ");
 		myLinkedList.printMyNode();
 		boolean result = myLinkedList.head.equals(myFirstNode) && 
 						 myLinkedList.head.getNext().equals(mySecondNode) && 
@@ -45,7 +47,7 @@ public class MyLinkedListTest {
 		myLinkedList.add(myFirstNode);
 		myLinkedList.append(myThirdNode);
 		myLinkedList.insert(myFirstNode, mySecondNode);
-		System.out.println("Adding element between 2 nodes: ");
+		System.out.println("\nAdding element between 2 nodes: ");
 		myLinkedList.printMyNode();
 		boolean result = myLinkedList.head.equals(myFirstNode) && 
 				 		 myLinkedList.head.getNext().equals(mySecondNode) && 	 	 
@@ -62,8 +64,8 @@ public class MyLinkedListTest {
 		myLinkedList.add(myFirstNode);
 		myLinkedList.append(mySecondNode);
 		myLinkedList.append(myThirdNode);
-		myLinkedList.pop();
-		System.out.println("Deleting first element: ");
+		INode deleteNode = myLinkedList.pop();
+		System.out.println("\nDeleting first element: ");
 		myLinkedList.printMyNode();
 		boolean result = myLinkedList.head.equals(mySecondNode) && 
 						 myLinkedList.head.getNext().equals(myThirdNode) && 
@@ -80,8 +82,9 @@ public class MyLinkedListTest {
 		myLinkedList.add(myFirstNode);
 		myLinkedList.append(mySecondNode);
 		myLinkedList.append(myThirdNode);
-		myLinkedList.popLast();
-		System.out.println("Deleting last element: ");
+		INode deleteNode = myLinkedList.popLast();
+		myLinkedList.removeParticularNode(deleteNode);
+		System.out.println("\nDeleting last element: ");
 		myLinkedList.printMyNode();
 		boolean result = myLinkedList.head.equals(myFirstNode) && 
 						 myLinkedList.head.getNext().equals(mySecondNode) && 
@@ -106,7 +109,7 @@ public class MyLinkedListTest {
 	}
 	
 	@Test
-	public void givenElementWhenInsertedafterSomeNodeShouldPassTest() {
+	public void givenElement_WhenInsertedafterSomeNode_ShouldPassTest() {
 		MyNode<Integer> myFirstNode = new MyNode<>(56);
 		MyNode<Integer> mySecondNode = new MyNode<>(30);
 		MyNode<Integer> myThirdNode = new MyNode<>(40);
@@ -117,12 +120,33 @@ public class MyLinkedListTest {
 		myLinkedList.append(myFourthNode);
 		INode found = myLinkedList.search(mySecondNode.getKey());
 		myLinkedList.insert(found, myThirdNode);
-		System.out.println("Insert element between 2 element: ");
+		System.out.println("\nInsert element between 2 element: ");
 		myLinkedList.printMyNode();
 		boolean result = myLinkedList.head.equals(myFirstNode) &&
 						 myFirstNode.getNext().equals(mySecondNode) && 
 						 mySecondNode.getNext().equals(myThirdNode) &&
 						 myLinkedList.tail.equals(myFourthNode);
 		assertTrue(result);
+	}
+	
+	@Test
+	public void givenElement_WhenDeletedAfterSearch_ShouldPassTest() {
+		MyNode<Integer> myFirstNode = new MyNode<>(56);
+		MyNode<Integer> mySecondNode = new MyNode<>(30);
+		MyNode<Integer> myThirdNode = new MyNode<>(40);
+		MyNode<Integer> myFourthNode = new MyNode<>(70);
+		MyLinkedList myLinkedList = new MyLinkedList();
+		myLinkedList.add(myFirstNode);
+		myLinkedList.append(mySecondNode);
+		myLinkedList.append(myThirdNode);
+		myLinkedList.append(myFourthNode);
+		System.out.println("Nodes : ");
+		myLinkedList.printMyNode();
+		INode found = myLinkedList.search(myThirdNode.getKey());
+		myLinkedList.removeParticularNode(found);
+		System.out.println("\nDeleting given node: ");
+		myLinkedList.printMyNode();
+		int size = myLinkedList.size();
+		System.out.print("\nSize of Linked List: " + size);
 	}
 }
